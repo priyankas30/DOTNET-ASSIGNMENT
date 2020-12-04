@@ -152,13 +152,13 @@ namespace Multiple_Inheritance
                     Basic = value;
             }
         }
-        public override void display()
-        {
-            // this.BASIC + "DeptNo= " + this.DEPTNO + "Designation" + this.DESIGNATION);
-            // Console.WriteLine("Empno "+this.EMPNO +"name);
-            Console.WriteLine("EmpNo= " + this.Empno + "name= " + this.Name + "basic= " + this.Basic + "DeptNo= " + this.Dno + "Designation" + this.DESIGNATION);
+        //public override void display()
+        //{
+        //    // this.BASIC + "DeptNo= " + this.DEPTNO + "Designation" + this.DESIGNATION);
+        //    // Console.WriteLine("Empno "+this.EMPNO +"name);
+        //    Console.WriteLine("EmpNo= " + this.Empno + "name= " + this.Name + "basic= " + this.Basic + "DeptNo= " + this.Dno + "Designation" + this.DESIGNATION);
 
-        }
+        //}
         public override void CalcNetSalary()
         {
             decimal net = 2400 + 420 + this.basic - ((decimal)0.10 * this.basic);
@@ -217,12 +217,12 @@ namespace Multiple_Inheritance
         //    Console.WriteLine("from General manager" + net);
 
         //}
-        public override void display()
-        {
-            // this.BASIC + "DeptNo= " + this.DEPTNO + "Designation" + this.DESIGNATION);
-            Console.WriteLine("EmpNo= " + this.Empno + "name= " + this.Name + "basic= " + this.Basic + "DeptNo= " + this.Dno + "Designation" + this.DESIGNATION + "Perks "+Perks);
+        //public override void display()
+        //{
+        //    // this.BASIC + "DeptNo= " + this.DEPTNO + "Designation" + this.DESIGNATION);
+        //    Console.WriteLine("EmpNo= " + this.Empno + "name= " + this.Name + "basic= " + this.basic + "DeptNo= " + this.Dno + "Designation" + this.DESIGNATION + "Perks "+Perks);
 
-        }
+        //}
 
     }
 
@@ -232,21 +232,32 @@ namespace Multiple_Inheritance
         {
         }
 
-        public override decimal Basic { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+     
+        public override decimal Basic
+        {
+            get
+            {
+                return Basic;
+            }
+            set
+            {
+                if (value >= 12000 && value <= 50000)
+                    Basic = value;
+            }
+        }
 
-        
         public sealed override void CalcNetSalary()
         {
             decimal net;
             net = 2500 + 1000 + this.basic - ((decimal)0.10 * this.basic);
             Console.WriteLine("from CEO" + net);
         }
-        public override void display()
-        {
-            // this.BASIC + "DeptNo= " + this.DEPTNO + "Designation" + this.DESIGNATION);
-            Console.WriteLine("EmpNo= " + this.Empno + "name= " + this.Name + "basic= " + this.Basic);
+        //public override void display()
+        //{
+        //    // this.BASIC + "DeptNo= " + this.DEPTNO + "Designation" + this.DESIGNATION);
+        //    Console.WriteLine("EmpNo= " + this.Empno + "name= " + this.Name + "basic= " + this.Basic);
 
-        }
+        //}
 
     }
 
