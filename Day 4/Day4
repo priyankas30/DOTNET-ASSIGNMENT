@@ -1,0 +1,182 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assignment_3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee[] emp = new Employee[4];
+
+            for (int i = 0; i < emp.Length; i++)
+            {
+                emp[i] = new Employee();
+                Console.WriteLine("Enter the details of Employee no {0} : ", i+1);
+                Console.WriteLine("Enter the employee name : ");
+                emp[i].NAME = Console.ReadLine();
+                Console.WriteLine("Enter the basic salary : ");
+                emp[i].BASIC = Convert.ToDecimal(Console.ReadLine());
+                Console.WriteLine("Enter the Department No : ");
+                emp[i].DEPTNO = Convert.ToInt16(Console.ReadLine());
+                Console.WriteLine();
+            }
+
+
+            /* foreach (var e in emp)
+             {
+                 Console.WriteLine("The details of Employee : ");
+                 Console.WriteLine("Employee no : "+e.EMPNO);
+                 Console.WriteLine("Employee Name : "+e.NAME);
+                 Console.WriteLine("Employee Basic Salary : "+e.BASIC);
+                 Console.WriteLine("Employee dept No : "+e.DEPTNO);
+                 Console.WriteLine();
+             }*/
+            decimal max = emp[0].BASIC;
+            Employee e1=emp[0];
+            foreach (var e in emp)
+            {
+                if(max < e.BASIC)
+                {
+                    e1 = e;
+                    max = e.BASIC;
+                }
+            }
+            Console.WriteLine("Maximum salary is : "+max );
+            Console.WriteLine("Employee detail : EmpNo : " + e1.EMPNO + " Name :" + e1.NAME + 
+                " Dept No : " + e1.DEPTNO);
+
+
+            Console.WriteLine("Enter the employee number to be search : ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            int flag = 0;
+            foreach (var e in emp)
+            {
+                if (a == e.EMPNO)
+                {
+                    flag = 1;
+                    e1 = e;
+                }
+            }
+            if(flag == 0)
+            {
+                Console.WriteLine("Employee Not Fopund");
+            }
+            else
+            {
+                Console.WriteLine("Employee detail : EmpNo : " + e1.EMPNO + " Name :" + e1.NAME +
+                    " Salary : "+e1.BASIC+
+                " Dept No : " + e1.DEPTNO);
+            }
+
+            Console.ReadLine();
+        }
+    }
+
+    class Employee
+    {
+        public Employee(string name = "hello", decimal basic = 5000, short deptNo = 10)
+        {
+            //empNo=++empNo;
+            empNo = ++eNo;
+            NAME = name;
+            BASIC = basic;
+            DEPTNO = deptNo;
+        }
+
+
+        #region Properties
+        private string name;
+        public string NAME
+        {
+            set
+            {
+                if (value != null)
+                {
+                    name = value;
+                }
+                else
+                    Console.WriteLine("Invalid Entry name");
+            }
+            get
+            {
+                return name;
+            }
+        }
+
+        private decimal basic;
+        public decimal BASIC
+        {
+            set
+            {
+                if (value < 150000 && value > 0)
+                {
+                    basic = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Basic");
+                }
+            }
+            get
+            {
+                return basic;
+            }
+        }
+
+        private short deptNo;
+        public short DEPTNO
+        {
+            set
+            {
+                if (value <= 0)
+                {
+                    Console.WriteLine("Invalid Dept No !!");
+                }
+                else
+                {
+                    deptNo = value;
+                }
+            }
+            get
+            {
+                return deptNo;
+            }
+        }
+
+        private int empNo;
+
+        public int EMPNO
+        {
+            get
+            {
+                return empNo;
+            }
+        }
+
+        private static int eNo;
+        public static int ENO
+        {
+            set
+            {
+                eNo = 0;
+            }
+            get
+            {
+                return eNo;
+            }
+        }
+        #endregion
+
+
+        public decimal getNetSalary()
+        {
+            return BASIC + 2000 + 3000;
+        }
+
+    }
+
+}
